@@ -1,0 +1,96 @@
+import tkinter as tk
+
+
+# Create the main window
+window = tk.Tk()
+window.title("Peg Solitaire")
+window.geometry("500x400")
+
+
+# Text
+title = tk.Label(
+    window,
+    text="Peg Solitaire",
+    font=("Arial", 20)
+)
+title.pack(pady=10)
+
+
+instructions = tk.Label(
+    window,
+    text="Select a board type and game options."
+)
+instructions.pack()
+
+
+# Line
+line = tk.Frame(
+    window,
+    height=2,
+    width=400,
+    bg="black"
+)
+line.pack(pady=15)
+
+
+# Radio Buttons
+board_type = tk.StringVar(value="English")
+
+english_button = tk.Radiobutton(
+    window,
+    text="English",
+    variable=board_type,
+    value="English"
+)
+english_button.pack()
+
+
+hexagon_button = tk.Radiobutton(
+    window,
+    text="Hexagon",
+    variable=board_type,
+    value="Hexagon"
+)
+hexagon_button.pack()
+
+
+diamond_button = tk.Radiobutton(
+    window,
+    text="Diamond",
+    variable=board_type,
+    value="Diamond"
+)
+diamond_button.pack()
+
+
+# Checkbox
+record_game = tk.BooleanVar()
+
+record_checkbox = tk.Checkbutton(
+    window,
+    text="Record Game",
+    variable=record_game
+)
+record_checkbox.pack(pady=15)
+
+
+# Another line
+line2 = tk.Frame(
+    window,
+    height=2,
+    width=400,
+    bg="black"
+)
+line2.pack(pady=10)
+
+
+# Button
+start_button = tk.Button(
+    window,
+    text="New Game"
+)
+start_button.pack(pady=10)
+
+
+# Keep the GUI running
+window.mainloop()
