@@ -1,7 +1,7 @@
 # CS449_Project
 
 ## Brandon Alvarez De La Cruz
-#Sprint0
+# Sprint0
 ### Files included:
 - Simple clculator
 - Unit Test for simple calculator 
