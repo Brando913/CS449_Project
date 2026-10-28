@@ -75,6 +75,18 @@ class TestMoves(unittest.TestCase):
     def test_initial_english_has_four_legal_moves(self):
         self.assertEqual(len(EnglishBoard(7).get_legal_moves()), 4)
 
+    def test_peg_count_drops_by_one_per_move(self):
+        board = EnglishBoard(7)
+        board.make_move((1, 3), (3, 3))
+        board.make_move((2, 1), (2, 3))
+        self.assertEqual(board.peg_count(), 30)
+
+    def test_destinations_for_selected_peg(self):
+        board = EnglishBoard(7)
+        moves = board.get_legal_moves()
+        self.assertEqual([to for frm, to in moves if frm == (1, 3)], [(3, 3)])
+        self.assertEqual([to for frm, to in moves if frm == (0, 3)], [])
+
 
 class TestGameOver(unittest.TestCase):
     def test_new_game_not_over(self):
@@ -99,6 +111,18 @@ class TestGameOver(unittest.TestCase):
         board.cells[0][2] = PEG
         board.cells[6][4] = PEG
         self.assertTrue(board.is_game_over())
+
+    def test_final_move_ends_game(self):
+        board = EnglishBoard(7)
+        for r in range(7):
+            for c in range(7):
+                if board.cells[r][c] == PEG:
+                    board.cells[r][c] = EMPTY
+        board.cells[3][1] = board.cells[3][2] = PEG
+        self.assertFalse(board.is_game_over())
+        board.make_move((3, 1), (3, 3))
+        self.assertTrue(board.is_game_over())
+        self.assertEqual(board.peg_count(), 1)
 
 
 if __name__ == "__main__":
